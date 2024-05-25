@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 
 const EthBerlin04 = () => {
   const { isConnected, selector, connect, activeAccountId } = useMbWallet();
-  const [nft, setNft] = useState<{ metadata: { extra: string }, token_id: string }[]>([]);
-  
+  const [nft, setNft] = useState<{ metadata: { extra: string, media: string }, token_id: string }[]>([]);
+
   const createUserNFT = async (address: string) => {
     const response = await fetch(`/api/ethberlin/${activeAccountId}`)
     const restResponse = await response.json();
@@ -14,7 +14,7 @@ const EthBerlin04 = () => {
   }
 
   const checkNFT = async (address: string) => {
-    const response = await callViewMethod<{ metadata: { extra: string }, token_id: string }[]>({
+    const response = await callViewMethod<{ metadata: { extra: string, media: string }, token_id: string }[]>({
       contractId: "ethberlin04hackaton.mintspace3.testnet",
       method: "nft_tokens_for_owner",
       args: { account_id: address }
@@ -24,7 +24,7 @@ const EthBerlin04 = () => {
   }
 
   useEffect(() => {
-    if (isConnected) {
+    if (isConnected && activeAccountId) {
       checkNFT(activeAccountId);
     }
   }, [isConnected]);
@@ -36,16 +36,19 @@ const EthBerlin04 = () => {
 
         {isConnected ? (
           <>
-            {nft.length > 0 ? ( nft.map(
+            {nft.length > 0 ? (nft.map(
               (nft) => (
                 <div key={nft.token_id}>
                   Level {nft.metadata.extra.split(",").length}
                   <img src={nft.metadata.media} alt="nft" />
                 </div>
               )
-            
-            ) ) : ( "no")}
-            <button onClick={() => createUserNFT(activeAccountId)}>Create NFT</button>
+
+            )) : ("no")}
+            {activeAccountId && (
+              <button onClick={() => createUserNFT(activeAccountId)}>Create NFT</button>
+
+            )}
 
           </>
         ) : (

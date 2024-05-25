@@ -12,7 +12,9 @@ export const requestFromNearRpc = async (
   rpc?:  RPC_OPTIONS,
 ): Promise<{ result: Record<string, unknown>, error: unknown } | undefined> => {
 
+  //@ts-ignore
   const fetchUrl =  mbjs.keys.nearRpcUrl || RPC_ENDPOINTS[mbjs.keys.rpc][mbjs.keys.network]  || NEAR_RPC_ENDPOINTS[mbjs.keys.network];
+  //@ts-ignore
   const rpcAddress = network && rpc ? RPC_ENDPOINTS[rpc][network] : fetchUrl;
   //console.log(rpcAddress)
 
