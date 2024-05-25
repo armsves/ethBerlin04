@@ -30,7 +30,7 @@ export const GET = async (request: Request, data: any) => {
 }
 
 
-export const createUserNFT = async (address: string) => {
+const createUserNFT = async (address: string) => {
     const extra = "ethBerlin06";
     const contractAddress = 'ethberlin04hackaton.mintspace3.testnet';
 
