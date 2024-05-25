@@ -46,6 +46,11 @@ const createUserNFT = async (address: string) => {
     ]
 
     const keyStore = new nearAPI.keyStores.InMemoryKeyStore();
+    
+    if (!process.env.PRIVATE_KEY) {
+        throw new Error('PRIVATE_KEY is not defined');
+    }
+
     await keyStore.setKey(
         NETWORK,
         ACCOUNT_ID,
