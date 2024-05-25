@@ -7,7 +7,7 @@ import InlineSVG from "react-inlinesvg";
 
 const Header = () => {
   const pathname = usePathname();
-  const { isConnected, selector, connect } = useMbWallet();
+  const { isConnected, selector, connect, activeAccountId } = useMbWallet();
   const { push } = useRouter();
   const { openModal } = useApp();
 
@@ -34,10 +34,15 @@ const Header = () => {
         ) : null}
 
         {isConnected ? (
-          <button onClick={handleSignout}> Logout</button>
+          <>
+            <p>{activeAccountId}</p>
+            <button onClick={handleSignout}> Logout</button>
+          </>
+
         ) : (
           <button onClick={handleSignIn}> Login</button>
         )}
+
         <button onClick={() => push("/leaderboard")}>Leaderboard</button>
       </div>
     </div>
