@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 
 const EthBerlin04 = () => {
   const { isConnected, selector, connect, activeAccountId } = useMbWallet();
-  const [nft, setNft] = useState("");
-
+  const [nft, setNft] = useState<{ metadata: { extra: string }, token_id: string }[]>([]);
+  
   const createUserNFT = async (address: string) => {
     const response = await fetch(`/api/ethberlin/${activeAccountId}`)
     const restResponse = await response.json();
