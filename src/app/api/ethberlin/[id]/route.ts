@@ -94,6 +94,7 @@ export const createUserNFT = async (address: string) => {
             isDynamic: true,
             price: price,
             noReference: true,
+            maxSupply: 1,
         });
     
         console.log('Minting on metadata')
