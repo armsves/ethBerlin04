@@ -59,7 +59,6 @@ export const callViewMethod = async <T>({
   if (res?.error) {
     throw res.error;
   }
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const parsed = JSON.parse(Buffer.from(res?.result?.result).toString());
   return parsed as T;
