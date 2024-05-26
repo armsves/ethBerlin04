@@ -11,4 +11,4 @@ Some problems with the connection of the contract to the frontend since the cont
 ### Technology used
 Rust for the contract
 React for frontend
-Mintbase-Js for connection
+Mintbase-Js minsta template for starter
