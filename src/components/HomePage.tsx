@@ -9,7 +9,7 @@ export const HomePage = () => {
   const router = useRouter();
 
   return (
-    <main className="px-4 lg:px-12 mx-auto flex flex-col items-center justify-center space-y-4 bg-yellow-200">
+    <main className="px-4 lg:px-12 mx-auto flex flex-col items-center justify-center space-y-4">
       <LeaderboardPage />
     </main>
   );
