@@ -90,6 +90,7 @@ const css = `
           --bgFreeUse: #${colors.freeUseText}1A;
           --primaryBtnText: #${colors.primaryBtnText};
           --secondaryBtnText: #${colors.secondaryBtnText};
+          --lightBlue: #${colors.lightBlue};
         }`;
 
 const outputPath = path.resolve(__dirname, "src/style/global.css");

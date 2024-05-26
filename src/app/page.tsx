@@ -3,9 +3,9 @@ import { MINSTA_META } from "@/data/fallback";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-   title: `${process.env.NEXT_PUBLIC_META_TITLE} - ${process.env.NEXT_PUBLIC_META_DESCRIPTION} `,
+   title: "EthBerlin04 - Hackaton Center",
   openGraph: {
-    title: process.env.NEXT_PUBLIC_META_TITLE ?? MINSTA_META.title,
+    title: "EthBerlin04 - Hackaton Center",
     description:
       process.env.NEXT_PUBLIC_META_DESCRIPTION ?? MINSTA_META.description,
     images: [
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: process.env.NEXT_PUBLIC_META_TITLE ?? MINSTA_META.title,
+    title: "EthBerlin04 - Hackaton Center",
     description:
       process.env.NEXT_PUBLIC_META_DESCRIPTION ?? MINSTA_META.description,
     siteId: "1467726470533754880",
