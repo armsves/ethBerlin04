@@ -14,7 +14,7 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        primary: "var(--primary)",
+        primary: "red",
         secondary: "var(--secondary)",
         mainBg: "var(--mainBg)",
         gradOne: "var(--gradOne)",
@@ -32,6 +32,7 @@ const config: Config = {
         bgFreeUse: "var(--bgFreeUse)",
         primaryBtnText: "var(--primaryBtnText)",
         secondaryBtnText: "var(--secondaryBtnText)",
+        lightBlue: "var(--lightBlue)",
       },
       gradientColorStopPositions: {
         33: "33%",

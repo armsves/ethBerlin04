@@ -8,22 +8,6 @@ import { useRouter } from "next/navigation";
 import { ReactEventHandler } from "react";
 import InlineSVG from "react-inlinesvg";
 
-export const FooterButton = ({ onClick }: { onClick: ReactEventHandler }) => (
-  <button
-    className="rounded-full h-24 w-24 bg-primary absolute -top-12 flex items-center justify-center"
-    onClick={onClick}
-  >
-    <div
-      className="rounded-full h-20 w-20 gradientButton
-  flex items-center justify-center"
-    >
-      <InlineSVG
-        src="/images/photo_camera.svg"
-        className="fill-current text-camera h-12"
-      />
-    </div>
-  </button>
-);
 
 const Footer = () => {
   const pathname = usePathname();
@@ -35,32 +19,11 @@ const Footer = () => {
   const renderFooterButtons = () => {
     const { isClosed } = constants;
 
-    switch (pathname) {
-      case "/":
-        return !isClosed ? (
-          <footer className="fixed bottom-0 left-0 flex w-full items-end justify-center bg-primary h-16">
-            <FooterButton
-              onClick={
-                isConnected ? () => push("/camera") : () => openModal("default")
-              }
-            />
-          </footer>
-        ) : null;
-      case "/leaderboard":
-        return !isClosed ? (
-          <footer className="fixed bottom-0 left-0 flex w-full items-end justify-center bg-primary h-16">
-            <FooterButton
-              onClick={
-                isConnected ? () => push("/camera") : () => openModal("default")
-              }
-            />
-          </footer>
-        ) : null;
-      case "/camera":
-        return null;
-      default:
-        return null;
-    }
+    return (
+      <footer className="fixed bottom-0 left-0 flex w-full items-end justify-center bg-primary h-10 py-2 text-white">
+          Powered by dRPC
+      </footer>
+    )
   };
 
   return renderFooterButtons();

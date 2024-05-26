@@ -48,7 +48,7 @@
 :root {
           --primary: #F3F4F8;
           --secondary: #000;
-          --mainBg: #FFFFFF;
+          --mainBg: #fdfaa7;
           --gradOne: #4472ad;
           --gradTwo: #009dea;
           --cardOne: #E8EAF0;
@@ -64,4 +64,5 @@
           --bgFreeUse: #0A7D6C1A;
           --primaryBtnText: #FFFFFF;
           --secondaryBtnText: #000000;
+          --lightBlue: #50b0d9;
         }

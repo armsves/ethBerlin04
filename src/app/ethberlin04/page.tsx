@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 const EthBerlin04 = () => {
   const { isConnected, selector, connect, activeAccountId } = useMbWallet();
-  const [nft, setNft] = useState<{ metadata: { extra: string, media: string }, token_id: string }[]>([]);
+  const [nfts, setNfts] = useState<{ metadata: { extra: string, media: string }, token_id: string }[]>([]);
 
   const createUserNFT = async (address: string) => {
     const response = await fetch(`/api/ethberlin/${activeAccountId}`)
@@ -14,13 +14,17 @@ const EthBerlin04 = () => {
   }
 
   const checkNFT = async (address: string) => {
-    const response = await callViewMethod<{ metadata: { extra: string, media: string }, token_id: string }[]>({
-      contractId: "ethberlin04hackaton.mintspace3.testnet",
-      method: "nft_tokens_for_owner",
-      args: { account_id: address }
-    });
-    setNft(response);
-    console.log(response);
+    try {
+      const response = await callViewMethod<{ metadata: { extra: string, media: string }, token_id: string }[]>({
+        contractId: "ethberlin04hackaton.mintspace3.testnet",
+        method: "nft_tokens_for_owner",
+        args: { account_id: address }
+      });
+      setNfts(response);
+      console.log(response);
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   useEffect(() => {
@@ -31,31 +35,37 @@ const EthBerlin04 = () => {
 
   return (
     <>
-      <main className="pt-20 flex flex-col gap-6 items-center justify-center text-mainText">
-        <div>EthBerlin 04</div>
-
+      <main className="pt-20 flex flex-col gap-6 items-center justify-center text-mainText font-bold"
+        style={{ backgroundImage: "url('../images/cityback.jpg')" }} 
+      >
         {isConnected ? (
           <>
-            {nft.length > 0 ? (nft.map(
-              (nft) => (
-                <div key={nft.token_id}>
-                  Level {nft.metadata.extra.split(",").length}
-                  <img src={nft.metadata.media} alt="nft" />
-                </div>
-              )
-
-            )) : ("no")}
-            {activeAccountId && (
-              <button onClick={() => createUserNFT(activeAccountId)}>Create NFT</button>
-
+            {nfts.length > 0 ? (
+              <>
+              <h1>You Have Already Minted this NFT</h1>
+                {
+                  nfts.map(
+                    (nft) => (
+                      <div key={nft.token_id} className="rounded-xl flex-auto items-center m-2 w-[500px] text-center bg-lightBlue">
+                        <span>{nft.owner_id}</span>
+                        <p>Level {nft.metadata.extra.split(",").length}</p>
+                        <img src={nft.metadata.media} alt="nft" className="w-full rounded-b-xl" />
+                      </div>
+                    )
+                  )
+                }
+              </>
+            ) : (
+              <>
+                {activeAccountId && (
+                  <button onClick={() => createUserNFT(activeAccountId)}>Mint NFT</button>
+                )}
+              </>
             )}
-
           </>
         ) : (
-          <button onClick={connect}> Login</button>
+          <button onClick={connect}>Please Login to Mint NFT</button>
         )}
-
-
       </main>
     </>
   );

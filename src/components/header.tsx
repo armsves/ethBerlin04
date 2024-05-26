@@ -4,6 +4,7 @@ import { useMbWallet } from "@mintbase-js/react";
 import { usePathname, useRouter } from "next/navigation";
 import { ReactEventHandler } from "react";
 import InlineSVG from "react-inlinesvg";
+import Image from 'next/image'
 
 const Header = () => {
   const pathname = usePathname();
@@ -22,47 +23,39 @@ const Header = () => {
 
   const headerButtonsNotHome = (onClick: ReactEventHandler) => (
     <div className="flex w-full justify-between px-4 lg:px-12 items-center">
-      <button className="h-8 w-8 text-headerText" onClick={onClick}>
-        <InlineSVG
-          src="/images/arrow_back.svg"
-          className="fill-current text-headerText"
-        />
+    <div className="flex-1">
+      <button className="font-bold text-xl" onClick={() => push("/")}>
+        {process.env.NEXT_PUBLIC_APP_TITLE || "Minsta"}
       </button>
-      <div className="flex gap-4">
-        {!isConnected ? (
-          <button onClick={() => openModal("default")}>About</button>
-        ) : null}
-
-        {isConnected ? (
-          <>
-            <p>{activeAccountId}</p>
-            <button onClick={handleSignout}> Logout</button>
-          </>
-
-        ) : (
-          <button onClick={handleSignIn}> Login</button>
-        )}
-
-        <button onClick={() => push("/leaderboard")}>Leaderboard</button>
-      </div>
     </div>
+    <div className="flex-1 flex justify-center">
+      <Image src="/images/pokeball.png" width={50} height={50} />
+    </div>
+    <div className="flex-1 flex justify-end gap-4 text-white">
+      {isConnected ? (
+        <button onClick={handleSignout}> Logout</button>
+      ) : (
+        <button onClick={handleSignIn}> Login</button>
+      )}
+      <button onClick={() => push("/leaderboard")}>Leaderboard</button>
+    </div>
+  </div>
   );
 
   const renderHeaderButtons = () => {
     switch (pathname) {
       case "/":
         return (
-          <div className="flex w-full justify-between px-4 lg:px-12  items-center">
-            <div>
+          <div className="flex w-full justify-between px-4 lg:px-12 items-center">
+            <div className="flex-1">
               <button className="font-bold text-xl" onClick={() => push("/")}>
                 {process.env.NEXT_PUBLIC_APP_TITLE || "Minsta"}
               </button>
             </div>
-            <div className="flex gap-4">
-              {!isConnected ? (
-                <button onClick={() => openModal("default")}>About</button>
-              ) : null}
-
+            <div className="flex-1 flex justify-center">
+              <Image src="/images/pokeball.png" width={50} height={50} />
+            </div>
+            <div className="flex-1 flex justify-end gap-4 text-white">
               {isConnected ? (
                 <button onClick={handleSignout}> Logout</button>
               ) : (
@@ -73,8 +66,6 @@ const Header = () => {
           </div>
         );
       case "/leaderboard":
-        return headerButtonsNotHome(() => push("/"));
-      case "/camera":
         return headerButtonsNotHome(() => push("/"));
       default:
         return headerButtonsNotHome(() => push("/"));

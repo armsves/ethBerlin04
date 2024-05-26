@@ -26,9 +26,9 @@ export default function RootLayout({
               <Header />
               <Footer />
             </Navigation>
-            <MintingClosed />
+
             {children}
-            <Modal></Modal>
+
           </Providers>
         </div>
       </body>
