@@ -7,6 +7,7 @@ import { useLeaderBoardData } from "@/hooks/useLeaderboard";
 import Link from "next/link";
 import { callViewMethod } from '../../utils/utils'
 import { useState, useEffect } from "react";
+import Image from 'next/image';
 
 export const LeaderboardPage = () => {
   const { openModal, leaderboard, activeAccountId, texts } = useLeaderBoardData();
@@ -32,7 +33,7 @@ export const LeaderboardPage = () => {
 
   return (
     <>
-      <main className="pt-20 flex flex-col gap-6 items-center justify-center text-mainText ">
+      <main className="pt-12 flex flex-col gap-6 items-center justify-center text-mainText ">
         <div className="font-bold text-2xl">Leaderboard</div>
         <div className="flex text-center gap-10">
           <ViewYourNfts />
@@ -51,7 +52,7 @@ export const LeaderboardPage = () => {
                 <div key={nft.token_id} className="border-2 rounded-xl flex-auto items-center m-2 w-[240px] text-center bg-lightBlue">
                   <span>{nft.owner_id}</span>
                   <p>Level {nft.metadata.extra.split(",").length}</p>
-                  <img src={nft.metadata.media} alt="nft" className="w-full rounded-b-xl" />
+                  <Image src={nft.metadata.media} alt="nft" className="w-full rounded-b-xl" width="240" height="400" />
                 </div>
               ))}
           </div>
