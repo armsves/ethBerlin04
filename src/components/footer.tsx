@@ -27,7 +27,7 @@ const Footer = () => {
         <FontAwesomeIcon icon={faGithub} />
     </a>
     <div>
-        Powered by dRPC
+        <a href="https://drpc.org/" target="_blank">Powered by dRPC</a>
     </div>
     <a href="https://twitter.com/armsves" style={{marginRight: '20%'}} target="_blank">
         <FontAwesomeIcon icon={faTwitter} />
