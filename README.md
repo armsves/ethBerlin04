@@ -12,3 +12,6 @@ Some problems with the connection of the contract to the frontend since the cont
 Rust for the contract
 React for frontend
 Mintbase-Js minsta template for starter
+
+install by pnpm install
+run locally with pnpm run dev

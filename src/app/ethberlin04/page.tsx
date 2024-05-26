@@ -2,6 +2,7 @@
 import { useMbWallet } from "@mintbase-js/react";
 import { callViewMethod } from '../../utils/utils'
 import { useEffect, useState } from "react";
+import Image from 'next/image';
 
 const EthBerlin04 = () => {
   const { isConnected, selector, connect, activeAccountId } = useMbWallet();
@@ -31,7 +32,7 @@ const EthBerlin04 = () => {
     if (isConnected && activeAccountId) {
       checkNFT(activeAccountId);
     }
-  }, [isConnected]);
+  }, [isConnected, activeAccountId]);
 
   return (
     <>
@@ -49,7 +50,7 @@ const EthBerlin04 = () => {
                       <div key={nft.token_id} className="rounded-xl flex-auto items-center m-2 w-[500px] text-center bg-lightBlue">
                         <span>{nft.owner_id}</span>
                         <p>Level {nft.metadata.extra.split(",").length}</p>
-                        <img src={nft.metadata.media} alt="nft" className="w-full rounded-b-xl" />
+                        <Image src={nft.metadata.media} alt="nft" className="w-full rounded-b-xl" />
                       </div>
                     )
                   )
