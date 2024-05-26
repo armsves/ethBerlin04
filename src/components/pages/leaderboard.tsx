@@ -10,18 +10,16 @@ import { useState, useEffect } from "react";
 
 export const LeaderboardPage = () => {
   const { openModal, leaderboard, activeAccountId, texts } = useLeaderBoardData();
-  const [nftList, setNftList] = useState<{ metadata: { extra: string, media: string }, token_id: string }[]>([]);
-
-
-  const nfts: any = [];
-  leaderboard?.forEach(({ count }) => {
-    nfts.push(count);
-  });
+  const [nftList, setNftList] = useState<{ owner_id: string, metadata: { extra: string, media: string }, token_id: string }[]>([]);
 
   const checkNFT = async () => {
     try {
       const response = await callViewMethod({ contractId: "ethberlin04hackaton.mintspace3.testnet", method: "nft_tokens", args: { limit: 10, offset: 0 } })
-      setNftList(response);
+      if (response && Array.isArray(response)) { 
+        setNftList(response); 
+      } else {
+        console.log('Response is not an array');
+      }
       console.log(response);
     } catch (e) {
       console.log(e)
@@ -31,8 +29,6 @@ export const LeaderboardPage = () => {
   useEffect(() => {
     checkNFT();
   }, []);
-
-  const sum = nfts?.reduce((x: number, y: number) => x + y, 0);
 
   return (
     <>

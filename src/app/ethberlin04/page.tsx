@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 const EthBerlin04 = () => {
   const { isConnected, selector, connect, activeAccountId } = useMbWallet();
-  const [nfts, setNfts] = useState<{ metadata: { extra: string, media: string }, token_id: string }[]>([]);
+  const [nfts, setNfts] = useState<{ owner_id: string,  metadata: { extra: string, media: string }, token_id: string }[]>([]);
 
   const createUserNFT = async (address: string) => {
     const response = await fetch(`/api/ethberlin/${activeAccountId}`)
@@ -15,7 +15,7 @@ const EthBerlin04 = () => {
 
   const checkNFT = async (address: string) => {
     try {
-      const response = await callViewMethod<{ metadata: { extra: string, media: string }, token_id: string }[]>({
+      const response = await callViewMethod<{ owner_id: string, metadata: { extra: string, media: string }, token_id: string }[]>({
         contractId: "ethberlin04hackaton.mintspace3.testnet",
         method: "nft_tokens_for_owner",
         args: { account_id: address }

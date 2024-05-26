@@ -29,7 +29,7 @@ const Header = () => {
       </button>
     </div>
     <div className="flex-1 flex justify-center">
-      <Image src="/images/pokeball.png" width={50} height={50} />
+      <Image src="/images/pokeball.png" width={50} height={50} alt="pokeball" />
     </div>
     <div className="flex-1 flex justify-end gap-4 text-white">
       {isConnected ? (
@@ -53,7 +53,7 @@ const Header = () => {
               </button>
             </div>
             <div className="flex-1 flex justify-center">
-              <Image src="/images/pokeball.png" width={50} height={50} />
+              <Image src="/images/pokeball.png" width={50} height={50} alt="pokeball" />
             </div>
             <div className="flex-1 flex justify-end gap-4 text-white">
               {isConnected ? (
